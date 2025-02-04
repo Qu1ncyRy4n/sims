@@ -16,6 +16,7 @@ import (
 	"reflect"
 	"time"
 
+	"cogentcore.org/core/base/labels"
 	"cogentcore.org/core/core"
 	"cogentcore.org/core/icons"
 	"cogentcore.org/core/math32/minmax"
@@ -429,6 +430,23 @@ func (ss *Sim) ConfigGUI() {
 	title := "Neuron"
 	ss.GUI.MakeBody(ss, "neuron", title, `This simulation illustrates the basic properties of neural spiking and rate-code activation, reflecting a balance of excitatory and inhibitory influences (including leak and synaptic inhibition). See <a href="https://github.com/CompCogNeuro/sims/blob/main/ch2/neuron/README.md">README.md on GitHub</a>.</p>`, readme)
 	ss.GUI.CycleUpdateInterval = 10
+
+		// Handle links here? 
+	// step 1: Handle widget walk down
+
+	print("pre fn\n")
+	ss.GUI.Body.WidgetWalkDown(func(cw core.Widget, cwb *core.WidgetBase) bool {
+		print(cwb.Name, "\n")
+		if (labels.ToLabel(cwb.Name) ==  labels.ToLabel("Test Cycle Plot")) {
+			print("found widget\n")
+			cwb.SetFocus()
+			return tree.Break
+		}
+		return tree.Continue
+	}) 
+	print("past fn\n")
+	
+
 
 	nv := ss.GUI.AddNetView("Network")
 	nv.Var = "Act"
