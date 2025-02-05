@@ -434,19 +434,6 @@ func (ss *Sim) ConfigGUI() {
 		// Handle links here? 
 	// step 1: Handle widget walk down
 
-	print("pre fn\n")
-	ss.GUI.Body.WidgetWalkDown(func(cw core.Widget, cwb *core.WidgetBase) bool {
-		print(cwb.Name, "\n")
-		if (labels.ToLabel(cwb.Name) ==  labels.ToLabel("Test Cycle Plot")) {
-			print("found widget\n")
-			cwb.SetFocus()
-			return tree.Break
-		}
-		return tree.Continue
-	}) 
-	print("past fn\n")
-	
-
 
 	nv := ss.GUI.AddNetView("Network")
 	nv.Var = "Act"
@@ -466,6 +453,21 @@ func (ss *Sim) ConfigGUI() {
 	plt.SetTable(dt)
 
 	ss.GUI.FinalizeGUI(false)
+
+	// Convert to fn... 
+	// 
+	ss.GUI.Body.WidgetWalkDown(func(cw core.Widget, cwb *core.WidgetBase) bool {
+		// print(labels.ToLabel(cwb.Name), "\n")
+		if (labels.ToLabel(cwb.Name) ==  labels.ToLabel("Test Cycle Plot")) {
+			print("found widget\n")
+			cwb.SetFocus()
+			return tree.Break
+		}
+		return tree.Continue
+	}) 
+	
+
+
 }
 
 func (ss *Sim) MakeToolbar(p *tree.Plan) {
