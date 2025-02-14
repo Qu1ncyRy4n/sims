@@ -10,7 +10,7 @@ In this model, the `Network` only shows a single neuron which is "injected" with
 
 * Press the [[sim:Test Cycle Plot]] tab in the right panel to display the graph view display.  If you haven't done `Run Cycles` yet, do it now so you can see the results of running with the default parameters.
 
-Only the excitatory and leak currents are operating here, with their conductances ([[sim:value-GbarE-float32]], `GbarL`) as shown in the control panel.  You should
+Only the excitatory and leak currents are operating here, with their conductances ([[sim:GbarE]], `GbarL`) as shown in the control panel.  You should
 see various lines plotted over 200 time steps (*cycles*) on the X axis.
 
 Here is a quick overview of each of the variables -- we'll go through them individually next (see for more details on how to determine what is being graphed, and how to configure it):
